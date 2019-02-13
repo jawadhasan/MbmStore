@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@Html.ActionLink ("Home", "Index", "Home")
+
+<h1>Customers</h1>
+@helper RenderCustomer (Customer customer)
+
+    <p>@customer.Firstname @customer.Lastname</p>
+    <p>@customer.City</p>
+   
+@RenderCustomer(ViewBag.FirstCustomer)
+@RenderCustomer(ViewBag.SecondCustomer)
+@RenderCustomer(ViewBag.ThirdCustomer)
+
+    <p>@ViewBag.FirstCustomer.Firstname @ViewBag.FirstCustomer.Lastname is @ViewBag.FirstCustomer.Age years old</p>
+    <p>@ViewBag.FirstCustomer.Address</p>
+    <p>@ViewBag.FirstCustomer.Zip @ViewBag.FirstCustomer.City</p>
+
+
+
+
+
+
+
+
