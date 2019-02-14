@@ -1,22 +1,25 @@
-﻿@{
+﻿@using MbmStore.Models;
+
+@{
     ViewBag.Title = "Index";
 }
-@Html.ActionLink ("Home", "Index", "Home")
+
+@Html.ActionLink("Home", "Index", "Customer")
 
 <h1>Customers</h1>
-@helper RenderCustomer (Customer customer)
-
-    <p>@customer.Firstname @customer.Lastname</p>
-    <p>@customer.City</p>
+@helper RenderCustomer(Customer customer){
+    <div>
+        <p>@customer.Firstname @customer.Lastname @string.Join(", ", @customer.PhoneNumbers) </p>
+        <p>@customer.Address</p>
+        <p>@customer.Zip @customer.City</p> <br />
+    </div>
    
-@RenderCustomer(ViewBag.FirstCustomer)
-@RenderCustomer(ViewBag.SecondCustomer)
-@RenderCustomer(ViewBag.ThirdCustomer)
+}
 
-    <p>@ViewBag.FirstCustomer.Firstname @ViewBag.FirstCustomer.Lastname is @ViewBag.FirstCustomer.Age years old</p>
-    <p>@ViewBag.FirstCustomer.Address</p>
-    <p>@ViewBag.FirstCustomer.Zip @ViewBag.FirstCustomer.City</p>
-
+ 
+@RenderCustomer(ViewBag.customer1)
+@RenderCustomer(ViewBag.customer2)
+@RenderCustomer(ViewBag.customer3)
 
 
 

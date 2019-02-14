@@ -8,13 +8,13 @@ namespace MbmStore.Models
     public class Customer
     {
         // fields
-        string firstname;
-        string lastname;
-        int age;
-        string address;
-        string zip;
-        string city;
-        List<string> phoneNumbers;
+       private string firstname;
+       private string lastname;
+       private int age;
+       private string address;
+       private string zip;
+       private string city;
+       List<string> phoneNumbers = new List<string>();
         DateTime birthDate;
 
         // /////properties
@@ -22,19 +22,7 @@ namespace MbmStore.Models
         public string Firstname { get; set; }
         public string Lastname { get; set; }
 
-        ///Calculate the age of the customer from the birthday
-        public int Age {
-            get {
-                DateTime now = DateTime.Now;
-                int age;
-
-                age = now.Year - birthDate.Year;
-                // calculate to see if the customer hasn’t had birthday yet 
-                // subtract one year if that is so 
-                if (now.Month < birthDate.Month || (now.Month == birthDate.Month && now.Day < birthDate.Day)) ;
-
-            }
-        }
+        
 
         public string Address { get; set; }
         public string Zip { get; set; }
@@ -44,25 +32,54 @@ namespace MbmStore.Models
             get { return phoneNumbers; }
         }
 
-        DateTime Birthdate { get; set; }
+        ///Age based on birthday
+
+        DateTime BirthDate { get; set; }
+
+        public int CalculateAgeWrong1(DateTime birthDate, DateTime now)
+        {
+            return new DateTime(now.Subtract(birthDate).Ticks).Year - 1;
+        }
+
+        public int CalculateAgeWrong2(DateTime birthDate, DateTime now)
+        {
+            int age = now.Year - birthDate.Year;
+
+            if (now < birthDate.AddYears(age))
+                age--;
+
+            return age;
+        }
+
+        public int CalculateAgeCorrect(DateTime birthDate, DateTime now)
+        {
+            int age = now.Year - birthDate.Year;
+
+            if (now.Month < birthDate.Month || (now.Month == birthDate.Month && now.Day < birthDate.Day))
+                age--;
+
+            return age;
+      
+        }
+
+
         // constructors 
 
-        public Customer(string firstname, string lastname, int age, string address, string zip, string city)
+        public Customer(string firstname, string lastname, string address, string zip, string city)
         {
             this.Firstname = firstname;
             this.Lastname = lastname;
-            this.Age = age;
             this.Address= address;
             this.Zip = zip;
             this.City = city;
         }
-        /// method AddPhone
+        /// method AddPhone --to add or drag stuff
         public void addPhone(string phone)
         {
-            AddPhone.Add(phone);
+            PhoneNumbers.Add(phone);
         }
     }
 
 }
-}
+
 
