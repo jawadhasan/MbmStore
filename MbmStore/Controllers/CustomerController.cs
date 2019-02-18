@@ -15,6 +15,8 @@ namespace MbmStore.Controllers
             Customer customer1 = new Customer("Maria", "Dima", "Jernbanegade 24", "7100", "Vejle");
             customer1.addPhone("3232323");
             customer1.addPhone("7572547");
+            customer1.BirthDate = new DateTime(1996, 03, 03);
+
             Customer customer2 = new Customer("Alexandra", "Dima", "Jernbanegade 30", "7100", "Vejle");
             customer2.addPhone("3232323");
             customer2.addPhone("7572547");

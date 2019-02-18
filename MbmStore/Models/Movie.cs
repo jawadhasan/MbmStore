@@ -5,13 +5,10 @@ using System.Web;
 
 namespace MbmStore.Models
 {
-    public class Movie
+    public class Movie:Product
     {
-        // fields
-        private string title; 
-        private decimal price; 
-        //private string imageUrl; I don't need the private field anymore because I used the auto-implemented method
         private string director;
+        private string title;
 
         // properties
         public string Title
@@ -19,7 +16,7 @@ namespace MbmStore.Models
            get { return title; } // read
           // set { title = value; } // write ----If set is commented I won't have the write and it will be read-only
         }
-
+        /*
         public decimal Price 
         {
             set
@@ -36,11 +33,12 @@ namespace MbmStore.Models
         }
 
         //Auto implemented property, in this case I won't need private string image url.
-        public string ImageUrl 
+      /*  public string ImageUrl 
         {
             get;
             set;
         }
+        */
 
         public string Director
         {
@@ -51,15 +49,11 @@ namespace MbmStore.Models
         // constructors are used within the MovieController
         public Movie(string title, decimal price)
         {
-            this.title = title;
-            this.price = price;
         }
 
-        public Movie(string title, decimal price, string imageUrl, string director)
+        public Movie(string title, decimal price, string imageUrl, string director):
+        base (title, price, imageUrl)
         {
-            this.title = title;
-            this.price = price;
-            this.ImageUrl = imageUrl; //If I use auto-implemented property, I have to add the image with capital letter
             this.director = director;
         }
     }

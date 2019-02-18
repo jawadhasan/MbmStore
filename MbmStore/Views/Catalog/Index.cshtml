@@ -1,0 +1,82 @@
+﻿@using MbmStore.Models;
+@model IEnumerable<Track>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.ActionLink("Home", "Index", "Catalog")
+
+
+<div class="row">
+    <div class="col-sm-4">
+        <h1>Books</h1>
+        @helper RenderBook(Book book)
+        {
+        <div>
+            <p>@book.Title</p>
+            <p>@book.Price</p>
+            <p>@book.Publisher</p>
+            <p>@book.ISBN</p>
+            <p><img src="/content/images/@book.ImageUrl" alt="@book.Title" /></p>
+        </div>
+
+        }
+
+        @RenderBook(ViewBag.b1)
+        @RenderBook(ViewBag.b2)
+        @RenderBook(ViewBag.b3)
+
+    </div>
+
+    <div class="col-sm-4">
+        <h1>Music</h1>
+        @helper RenderCD(MusicCD musicCD)
+        {
+        <div>
+            <p>@musicCD.Title</p>
+            <p>@musicCD.Artist</p>
+            <p>@musicCD.Price</p>
+            <p><img src="/content/images/@musicCD.ImageUrl" alt="@musicCD.Title" /></p>
+        </div>
+  
+
+        }
+
+        @RenderCD(ViewBag.cd1)
+        @RenderCD(ViewBag.cd2)
+        @RenderCD(ViewBag.cd3)
+    </div>
+
+
+
+    <div class="col-sm-4">
+        @helper RenderTracks(Track track)
+        {
+            <div>
+                <h1>Tracks</h1>
+                <ol>
+                    @foreach (Track track in @cd.Tracks)
+                    {
+                        <li>@track.Title (@track.Composer)</li>
+                    }
+                </ol>
+            </div>
+
+            }
+
+        @RenderTracks(ViewBag.t1)
+        @RenderTracks(ViewBag.t2)
+        @RenderTracks(ViewBag.t3)
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+

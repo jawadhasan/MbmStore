@@ -14,8 +14,9 @@ namespace MbmStore.Models
        private string address;
        private string zip;
        private string city;
+        private DateTime birthDate;
        List<string> phoneNumbers = new List<string>();
-        DateTime birthDate;
+    
 
         // /////properties
         //Auto implemented property, in this case I won't need private string image url.
@@ -32,36 +33,40 @@ namespace MbmStore.Models
             get { return phoneNumbers; }
         }
 
-        ///Age based on birthday
+    
 
-        DateTime BirthDate { get; set; }
+        public int Age{
 
-        public int CalculateAgeWrong1(DateTime birthDate, DateTime now)
-        {
-            return new DateTime(now.Subtract(birthDate).Ticks).Year - 1;
+            get {
+            // code inside the get block of the Age property 
+                DateTime now = DateTime.Now;
+                int age = 0;
+                age = now.Year - birthDate.Year;
+                // calculate to see if the customer hasn’t had birthday yet // subtract one year if that is so 
+                if (now.Month < birthDate.Month || (now.Month == birthDate.Month && now.Day < birthDate.Day))
+                {
+                    age--;
+                }
+
+                return age;
+            }
         }
 
-        public int CalculateAgeWrong2(DateTime birthDate, DateTime now)
+        public DateTime BirthDate
         {
-            int age = now.Year - birthDate.Year;
-
-            if (now < birthDate.AddYears(age))
-                age--;
-
-            return age;
+            set
+            {
+                birthDate = value;
+                if ((DateTime.Now.Year - value.Year) > 120 || (DateTime.Now.Year - value.Year) < 0) 
+                {
+                    throw new Exception("Age not accepted");
+                }
+            }
+            get {
+                return birthDate;
+            }
         }
-
-        public int CalculateAgeCorrect(DateTime birthDate, DateTime now)
-        {
-            int age = now.Year - birthDate.Year;
-
-            if (now.Month < birthDate.Month || (now.Month == birthDate.Month && now.Day < birthDate.Day))
-                age--;
-
-            return age;
-      
-        }
-
+        
 
         // constructors 
 
