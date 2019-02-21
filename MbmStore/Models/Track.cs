@@ -31,10 +31,11 @@ namespace MbmStore.Models
         public Track()
         {
         }
-        public Track(string title, string composer, Track track)
+        public Track(string title, string composer, TimeSpan Length)
         {
             this.Composer = composer;
             this.Title = title;
+            this.Length = Length;
         }
     }
 }
