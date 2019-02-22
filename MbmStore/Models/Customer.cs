@@ -16,7 +16,7 @@ namespace MbmStore.Models
        private string city;
         private DateTime birthDate;
        List<string> phoneNumbers = new List<string>();
-    
+       List<Invoice> invoices = new List<Invoice>();
 
         // /////properties
         //Auto implemented property, in this case I won't need private string image url.
@@ -66,7 +66,11 @@ namespace MbmStore.Models
                 return birthDate;
             }
         }
-        
+
+        public List<Invoice> Invoices
+        {
+            get { return invoices; }
+        }
 
         // constructors 
 
@@ -83,8 +87,17 @@ namespace MbmStore.Models
         {
             PhoneNumbers.Add(phone);
         }
+
+        /// method AddInvoice 
+        public void addInvoice(Invoice invoice)
+        {
+            Invoices.Add(invoice);
+        }
+
     }
 
-}
+    }
+
+
 
 

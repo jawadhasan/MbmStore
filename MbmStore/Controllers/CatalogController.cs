@@ -29,12 +29,11 @@ namespace MbmStore.Controllers
             cd1.addTrack(new Track("Blue Moon", "Richard Rodgers", new TimeSpan(0, 2, 52)));
             cd1.addTrack(new Track("Step Inside Love", "Richard Rodgers", new TimeSpan(0, 2, 15)));
             cd1.addTrack(new Track("Los Paranoias", "John Lennon", new TimeSpan(0, 2, 05)));
-
-
+           
 
 
             MusicCD cd2 = new MusicCD("Bob Dylan - The collection", "Bob Dylan", 30, "BobDilanCD.jpg");
-            cd2.addTrack(new Track("Blowin' in the Wind", "Don Hunstein", new TimeSpan(0, 2, 48)));
+            cd2.addTrack(new Track("Blowin' in the Wind", "Don Hunstein", new TimeSpan(0,2, 48)));
             cd2.addTrack(new Track("Girl from the North Country", "Don Hunstein", new TimeSpan(0, 2, 38)));
             cd2.addTrack(new Track("Down the Highway", "Don Hunstein", new TimeSpan(0, 2, 07)));
             cd2.addTrack(new Track("Blowin' in the Wind", "Don Hunstein", new TimeSpan(0, 2, 48)));

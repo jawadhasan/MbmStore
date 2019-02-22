@@ -10,6 +10,7 @@ namespace MbmStore.Models
         ///fields
 
         List<Track> tracks = new List<Track>();
+        private TimeSpan getPlayingTime;
 
         //properties
 
@@ -45,7 +46,7 @@ namespace MbmStore.Models
         public MusicCD()
         {
         }
-        public MusicCD(string title, string artist, decimal price, string ImageURL): 
+        public MusicCD(string title, string artist, decimal price, string ImageURL) :
         base(title, price, ImageURL)
         {
             this.Artist = artist;
@@ -58,5 +59,14 @@ namespace MbmStore.Models
             Tracks.Add(track);
         }
 
+        //method to calculate the total track length
+        public TimeSpan GetPlayingTime(){
+            var playingTimeSec = TimeSpan.FromSeconds(Tracks.Select(t => t.Length.TotalSeconds).Sum());
+            return playingTimeSec;
+        }
+
+
+        }
+
     }
-}
+    

@@ -6,7 +6,7 @@ using System.Web;
 
 namespace MbmStore.Models
 {
-    public class Track:MusicCD
+    public class Track
     {
 
         //properties

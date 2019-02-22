@@ -49,9 +49,13 @@
                 {
                     <li>@track.Title (@track.Composer)
                     @track.Length.Minutes:@track.Length.Seconds
+
                 </li>
+               
                 }
             </ol>
+            <p><b>Total playing time: </b>@musicCD.GetPlayingTime()</p>
+            
         </div>
     </div>
 
