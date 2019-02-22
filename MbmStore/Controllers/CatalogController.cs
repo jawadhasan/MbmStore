@@ -40,6 +40,10 @@ namespace MbmStore.Controllers
             return View();
         }
 
-       
+        public ActionResult MyCatalog()
+        {
+            var data = Repository.GetProducts();
+            return View(data);
+        }
     }
 }
