@@ -1,5 +1,5 @@
 ﻿@using MbmStore.Models;
-@model IEnumerable<Track>
+
 
 @{
     ViewBag.Title = "Index";
@@ -8,67 +8,82 @@
 @Html.ActionLink("Home", "Index", "Catalog")
 
 
-<div class="row">
-    <div class="col-sm-4">
-        <h1>Books</h1>
-        @helper RenderBook(Book book)
-        {
-        <div>
-            <p>@book.Title</p>
-            <p>@book.Price</p>
-            <p>@book.Publisher</p>
-            <p>@book.ISBN</p>
-            <p><img src="/content/images/@book.ImageUrl" alt="@book.Title" /></p>
-        </div>
 
-        }
-
-        @RenderBook(ViewBag.b1)
-        @RenderBook(ViewBag.b2)
-        @RenderBook(ViewBag.b3)
-
-    </div>
-
-    <div class="col-sm-8">
-       
-        @helper RenderCD(MusicCD musicCD)
-        {
-    <div class="row">
-        <div class="col-sm-6">
-            <h1>Music</h1>
-            <p>@musicCD.Title</p>
-            <p>@musicCD.Artist</p>
-            <p>@musicCD.Price</p>
-            <p><img src="/content/images/@musicCD.ImageUrl" alt="@musicCD.Title" /></p>
-        </div>
-
-        <div class="col-sm-6">
-            <h1>Tracks</h1>
-            <ol>
-                @foreach (Track track in musicCD.Tracks)
-                {
-                    <li>@track.Title (@track.Composer)
-                    @track.Length.Minutes:@track.Length.Seconds
-
-                </li>
-               
-                }
-            </ol>
-            <p><b>Total playing time: </b>@musicCD.GetPlayingTime()</p>
+            @foreach (Book book in ViewBag.Books)
+            { @RenderBook(book);
+            }
+  
+        <div class="row">
+        <div class="col-sm-4">
             
+            <h1>Books</h1>
+         
+
+            @helper RenderBook(Book book)
+            {
+            <div>
+                <p>@book.Title</p>
+                <p>@book.Price</p>
+                <p>@book.Publisher</p>
+                <p>@book.ISBN</p>
+                <p><img src="/content/images/@book.ImageUrl" alt="@book.Title" /></p>
+            </div>
+
+            }
+
+            @RenderBook(ViewBag.books)
+    
+
         </div>
-    </div>
 
-}
 
-        @RenderCD(ViewBag.cd1)
-        @RenderCD(ViewBag.cd2)
-        @RenderCD(ViewBag.cd3)
 
-    </div>
+            
+            @foreach (MusicCD musicCD in ViewBag.musicCD)
+            { @RenderCD(musicCD);
+            }
+        <div class="col-sm-8">
+           
+            @helper RenderCD(MusicCD musicCD)
+            {
+        <div class="row">
+            <div class="col-sm-6">
+                <h1>Music</h1>
+                <p>@musicCD.Title</p>
+                <p>@musicCD.Artist</p>
+                <p>@musicCD.Price</p>
+                <p><img src="/content/images/@musicCD.ImageUrl" alt="@musicCD.Title" /></p>
+            </div>
 
+            <div class="col-sm-6">
+                <h1>Tracks</h1>
+                <ol>
+                    @foreach (Track track in musicCD.Tracks)
+                    {
+                        <li>@track.Title (@track.Composer)
+                        @track.Length.Minutes:@track.Length.Seconds
+
+                    </li>
+
+                    }
+                </ol>
+                <p><b>Total playing time: </b>@musicCD.GetPlayingTime()</p>
+
+            </div>
+        </div>
+
+    }
+
+            @RenderCD(ViewBag.musicCD)
    
-    </div>
+
+        </div>
+
+
+        </div>
+     
+
+
 
 
 
